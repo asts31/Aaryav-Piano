@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaryav Srivastava — Piano Lessons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+
+  :root{
+    --ink:#0c1622;
+    --ink-2:#122236;
+    --ink-3:#1a3049;
+    --gold:#cf9e4f;
+    --gold-soft:#e8c98a;
+    --teal:#5fd9c9;
+    --text:#eaf0f5;
+    --muted:#8ea3b8;
+    --line: rgba(234,240,245,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--ink); color:var(--text); font-family:'Inter', sans-serif; overflow-x:hidden;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em;}
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); margin-top: 20px;}
+  a{ color:inherit; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+  section{ padding:130px 0; position:relative;}
+  @media(max-width:640px){ .wrap{ padding:0 24px; } section{ padding:88px 0; } }
+
+  /* NAV */
+  nav{ position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:blur(10px); background:rgba(12,22,34,0.75); border-bottom:1px solid var(--line);}
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px;}
+  .brand{ font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;}
+  .brand span{ color:var(--gold);}
+  .navlinks{ display:none; gap:32px; font-size:0.88rem; }
+  @media(min-width:760px){ .navlinks{ display:flex; } }
+  .navlinks a{ text-decoration:none; color:var(--muted); transition:color .25s;}
+  .navlinks a:hover{ color:var(--text);}
+  .nav-cta{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; border:1px solid var(--gold); color:var(--gold-soft); padding:9px 18px; border-radius:999px; text-decoration:none; transition:all .25s;}
+  .nav-cta:hover{ background:var(--gold); color:var(--ink); }
+
+  /* STAFF DIVIDER */
+  .staff{ position:relative; height:64px; margin:0 auto; max-width:1080px; padding:0 32px;}
+  .staff svg{ width:100%; height:100%; display:block; }
+  .staff-line{ stroke:var(--line); stroke-width:1; }
+  .staff-note{ fill:var(--gold); opacity:0.9; }
+
+  /* HERO */
+  .hero{ min-height:92vh; display:flex; flex-direction:column; justify-content:center; padding-top:140px; position:relative;}
+  .hero::before{
+    content:''; position:absolute; inset:0; z-index:-1;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% 10%, rgba(207,158,79,0.10), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 90% 30%, rgba(95,217,201,0.08), transparent 60%);
+  }
+  .hero-eyebrow{ margin-bottom:22px;}
+  .hero h1{ font-size:clamp(2.6rem, 6vw, 4.8rem); line-height:1.05; max-width:880px;}
+  .hero h1 em{ font-style:italic; color:var(--gold-soft); }
+  .hero p.lede{ margin-top:28px; max-width:560px; font-size:1.1rem; line-height:1.7; color:var(--muted); }
+  .hero-actions{ display:flex; gap:18px; margin-top:48px; flex-wrap:wrap;}
+  .btn{ font-family:'IBM Plex Mono', monospace; font-size:0.82rem; letter-spacing:0.03em; padding:14px 26px; border-radius:999px; text-decoration:none; display:inline-block; transition:transform .25s, box-shadow .25s;}
+  .btn-primary{ background:var(--gold); color:var(--ink); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(207,158,79,0.25);}
+  .btn-ghost{ border:1px solid var(--line); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal); }
+  .hero-stats{ margin-top:100px; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:36px 32px; max-width:800px; border-top:1px solid var(--line); padding-top:36px;}
+  .stat-num{ font-family:'Fraunces', serif; font-size:2rem; color:var(--gold-soft); }
+  .stat-label{ font-size:0.78rem; color:var(--muted); margin-top:8px; line-height:1.4; }
+
+  .section-head{ margin-bottom:64px; max-width:640px; }
+  .section-head h2{ font-size:clamp(1.8rem,3.4vw,2.6rem); margin-top:16px; }
+  .section-head p{ color:var(--muted); margin-top:18px; font-size:1.02rem; line-height:1.65;}
+
+  /* WHY ME */
+  .why-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden;}
+  @media(min-width:760px){ .why-grid{ grid-template-columns:repeat(3,1fr); } }
+  .why-card{ background:var(--ink-2); padding:46px 38px; transition:background .3s;}
+  .why-card:hover{ background:var(--ink-3); }
+  .why-card .icon{ font-size:1.6rem; }
+  .why-card h3{ font-size:1.2rem; margin-top:22px; }
+  .why-card p{ color:var(--muted); font-size:0.94rem; margin-top:14px; line-height:1.65;}
+
+  /* LESSONS */
+  .lessons-grid{ display:grid; grid-template-columns:1fr; gap:48px; }
+  @media(min-width:840px){ .lessons-grid{ grid-template-columns:1.1fr 0.9fr; align-items:start; gap:64px;} }
+  .lessons-text p{ color:#c7d2dc; line-height:1.8; font-size:1.02rem; margin-bottom:22px;}
+  .lessons-text strong{ color:var(--text); font-weight:600;}
+  .step-list{ margin-top:28px; list-style:none; counter-reset:step; }
+  .step-list li{ counter-increment:step; display:flex; gap:18px; padding:16px 0; border-top:1px solid var(--line); align-items:flex-start;}
+  .step-list li:first-child{ border-top:none; padding-top:0; }
+  .step-list li::before{ content: counter(step, decimal-leading-zero); font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:0.85rem; padding-top:2px;}
+  .step-list .step-body h4{ font-size:1rem; font-weight:600; }
+  .step-list .step-body p{ color:var(--muted); font-size:0.9rem; margin-top:6px; line-height:1.55; }
+
+  .lesson-card{ background:linear-gradient(160deg, var(--ink-3), var(--ink-2)); border:1px solid var(--line); border-radius:18px; padding:38px;}
+  .lesson-card .eyebrow{ margin-bottom:14px; }
+  .lesson-card h3{ font-size:1.4rem; }
+  .lesson-card ul{ list-style:none; margin:26px 0; }
+  .lesson-card li{ font-size:0.9rem; color:#dbe4ec; padding:11px 0; border-top:1px solid var(--line); line-height:1.5;}
+  .lesson-card li:first-child{ border-top:none; padding-top:0; }
+  .lesson-card .price-note{ font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--gold-soft); margin-top:8px; }
+  .lesson-card .btn{ width:100%; text-align:center; margin-top:20px; }
+
+  /* CONNECT */
+  .connect-grid{ display:grid; grid-template-columns:1fr; gap:56px; }
+  @media(min-width:840px){ .connect-grid{ grid-template-columns:380px 1fr; gap:48px;} }
+  .social-list{ display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; align-self: flex-start;}
+  .social-row{ display:flex; align-items:center; justify-content:space-between; background:var(--ink); padding:24px 26px; text-decoration:none; transition:background .25s;}
+  .social-row:hover{ background:var(--ink-2); }
+  .social-row .platform{ font-weight:600; font-size:1rem; }
+  .social-row .handle{ font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--muted);}
+  .social-row .arrow{ color:var(--gold); font-family:'IBM Plex Mono', monospace; }
+
+  .contact-form{ display:flex; flex-direction:column; gap:22px; }
+  .contact-form input, .contact-form select, .contact-form textarea{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:10px; padding:15px 16px;
+    color:var(--text); font-family:'Inter'; font-size:0.94rem; outline:none; transition:border-color .25s;
+    width:100%;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus{ border-color:var(--gold); }
+  .contact-form label{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:-10px;}
+  .contact-form textarea{ resize:vertical; min-height:120px; }
+  .contact-form .btn{ align-self:flex-start; border:none; cursor:pointer; margin-top:6px;}
+  .form-note{ font-size:0.78rem; color:var(--muted); margin-top:6px; line-height:1.5;}
+
+  footer{ border-top:1px solid var(--line); padding:48px 0; text-align:center;}
+  footer p{ font-size:0.8rem; color:var(--muted); font-family:'IBM Plex Mono', monospace; }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  .fade-up{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .fade-up.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Aaryav <span>Piano</span></div>
+    <div class="navlinks">
+      <a href="#why">Why me</a>
+      <a href="#lessons">Lessons</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="#connect">Connect</a>
+    </div>
+    <a class="nav-cta" href="#connect">Book a lesson</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap">
+  <div class="eyebrow hero-eyebrow">Piano Lessons</div>
+  <h1>Learn piano from someone who's <em>still</em> on the bench too.</h1>
+  <p class="lede">One-on-one piano lessons for beginners through early RCM levels — technique, theory, and performance confidence, taught by a current RCM Level 10 pianist with hands-on experience teaching young students.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#connect">Book a lesson</a>
+    <a class="btn btn-ghost" href="#lessons">How lessons work</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">10+</div><div class="stat-label">Years playing piano</div></div>
+    <div><div class="stat-num">RCM 10</div><div class="stat-label">Current performance level</div></div>
+    <div><div class="stat-num">Ages 5–17</div><div class="stat-label">Current teaching focus</div></div>
+    <div><div class="stat-num">1st</div><div class="stat-label">Place, Kiwanis Music Festival</div></div>
+  </div>
+</header>
+
+<div class="staff"><svg viewBox="0 0 1000 64" preserveAspectRatio="none">
+  <line class="staff-line" x1="0" y1="12" x2="1000" y2="12"/>
+  <line class="staff-line" x1="0" y1="24" x2="1000" y2="24"/>
+  <line class="staff-line" x1="0" y1="36" x2="1000" y2="36"/>
+  <line class="staff-line" x1="0" y1="48" x2="1000" y2="48"/>
+  <line class="staff-line" x1="0" y1="60" x2="1000" y2="60"/>
+  <circle class="staff-note" cx="60" cy="24" r="5"/>
+  <circle class="staff-note" cx="220" cy="36" r="5"/>
+  <circle class="staff-note" cx="480" cy="12" r="5"/>
+  <circle class="staff-note" cx="700" cy="48" r="5"/>
+  <circle class="staff-note" cx="900" cy="24" r="5"/>
+</svg></div>
+
+<!-- WHY ME -->
+<section id="why" class="wrap">
+  <div class="section-head fade-up">
+    <div class="eyebrow">Why learn with me</div>
+    <h2>Taught by someone still doing the work</h2>
+    <p>I'm not teaching from memory of lessons I took years ago — I'm actively training, performing, and competing right now.</p>
+  </div>
+  <div class="why-grid fade-up">
+    <div class="why-card">
+      <div class="icon">🎹</div>
+      <h3>Currently RCM Level 10</h3>
+      <p>A decade of continuous training and exams, so I know exactly what each stage of learning actually requires.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🏆</div>
+      <h3>Competition-tested</h3>
+      <p>1st Place & Best of Class at the Kiwanis Music Festival, two Gold Medallions at IMFC Provincials — I teach performance confidence, not just notes.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🌱</div>
+      <h3>Experienced with beginners</h3>
+      <p>Hands-on experience teaching foundational piano to students aged 5–12 — patient, structured, and encouraging.</p>
+    </div>
+  </div>
+</section>
+
+<div class="staff"><svg viewBox="0 0 1000 64" preserveAspectRatio="none">
+  <line class="staff-line" x1="0" y1="12" x2="1000" y2="12"/>
+  <line class="staff-line" x1="0" y1="24" x2="1000" y2="24"/>
+  <line class="staff-line" x1="0" y1="36" x2="1000" y2="36"/>
+  <line class="staff-line" x1="0" y1="48" x2="1000" y2="48"/>
+  <line class="staff-line" x1="0" y1="60" x2="1000" y2="60"/>
+  <circle class="staff-note" cx="180" cy="36" r="5"/>
+  <circle class="staff-note" cx="420" cy="24" r="5"/>
+  <circle class="staff-note" cx="640" cy="48" r="5"/>
+  <circle class="staff-note" cx="880" cy="12" r="5"/>
+</svg></div>
+
+<!-- LESSONS -->
+<section id="lessons" class="wrap">
+  <div class="section-head fade-up">
+    <div class="eyebrow">How lessons work</div>
+    <h2>What to expect</h2>
+    <p>A structure built for steady, visible progress — whether the goal is a first recital or an RCM exam.</p>
+  </div>
+  <div class="lessons-grid fade-up">
+    <div class="lessons-text">
+      <p>Every student starts with a short intro session to figure out where they're at and what they want out of piano — whether that's just having fun at the keys, working toward an RCM exam, or preparing for a recital.</p>
+      <ol class="step-list">
+        <li><div class="step-body"><h4>Intro session</h4><p>A quick chat and short playing assessment to set a starting point and goals.</p></div></li>
+        <li><div class="step-body"><h4>Weekly lessons</h4><p>30–45 minute one-on-one sessions focused on technique, reading, and repertoire.</p></div></li>
+        <li><div class="step-body"><h4>Practice plans</h4><p>Clear, simple practice goals between lessons — no guessing what to work on.</p></div></li>
+        <li><div class="step-body"><h4>Recitals & exams</h4><p>Performance and RCM exam prep when a student is ready for it.</p></div></li>
+      </ol>
+    </div>
+    <div class="lesson-card">
+      <div class="eyebrow">Lesson details</div>
+      <h3>One-on-one piano</h3>
+      <ul>
+        <li>Ages 5–12, beginner to early RCM levels</li>
+        <li>30–45 minute sessions, weekly</li>
+        <li>In person or virtual</li>
+        <li>Technique, theory, and performance prep</li>
+      </ul>
+      <div class="price-note">Pricing shared on inquiry</div>
+      <a class="btn btn-primary" href="#connect">Inquire about lessons</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect" class="wrap">
+  <div class="section-head fade-up">
+    <div class="eyebrow">Connect</div>
+    <h2>Book a lesson or ask a question</h2>
+    <p>Send a note below and I'll follow up with availability and pricing.</p>
+  </div>
+  <div class="connect-grid fade-up">
+    <div class="social-list">
+      <a class="social-row" href="https://www.instagram.com/aaryavplays/?hl=en" target="_blank" rel="noopener">
+        <span class="platform">Instagram</span>
+        <span class="handle">@aaryavplays →</span>
+      </a>
+      <a class="social-row" href="https://www.linkedin.com/in/aaryav-srivastava-508348403/" target="_blank" rel="noopener">
+        <span class="platform">LinkedIn</span>
+        <span class="handle">More Info →</span>
+      </a>
+      <a class="social-row" href="gallery.html">
+        <span class="platform">Gallery</span>
+        <span class="handle">Competition & recital photos →</span>
+      </a>
+    </div>
+<iframe style="margin-left: 55px; margin-bottom: 15px; border-radius: 25px; background-color: #8ea3b8;" src="https://docs.google.com/forms/d/e/1FAIpQLSfuenWiv2vQyuJs99PivdaE37Qc9SGB8KQ6qpvU6XA-obMADA/viewform?embedded=true" width="766" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>
+</section>
+
+<footer>
+  <p>Aaryav Piano Lessons &nbsp;·&nbsp; Built with care</p>
+</footer>
+
+<script>
+  // 1. Fade-up animation logic
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+
+</script>
+
+</body>
+</html>
